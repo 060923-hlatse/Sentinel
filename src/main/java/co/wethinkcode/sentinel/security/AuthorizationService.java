@@ -33,9 +33,7 @@ public class AuthorizationService {
             return false;
         }
 
-        return user.getRole().equals("ADMIN")
-                || user.getRole().equals("DOCTOR")
-                || user.getRole().equals("NURSE");
+        return user.getRole().equals("ADMIN")|| user.getRole().equals("DOCTOR")|| user.getRole().equals("NURSE");
     }
 
     public boolean canAccessReceptionArea(User user) {
