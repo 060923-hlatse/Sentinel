@@ -66,7 +66,7 @@ public class SentinelApplication {
             }
         });
 
-        // Admin dashboard endpoint
+        
         app.get("/admin/dashboard", ctx -> {
 
             String username =
