@@ -1,0 +1,3 @@
+co/wethinkcode/sentinel/security/AuthenticationServiceTest.class
+co/wethinkcode/sentinel/security/AuthorizationServiceTest.class
+co/wethinkcode/sentinel/repository/UserRepositoryTest.class
