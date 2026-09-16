@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.025" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.024" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ZA"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/wtc/Documents/Sentinel/target/surefire/surefirebooter-20260909122140832_3.jar /home/wtc/Documents/Sentinel/target/surefire 2026-09-09T12-21-40_780-jvmRun1 surefire-20260909122140832_1tmp surefire_0-20260909122140832_2tmp"/>
+    <property name="sun.java.command" value="/home/wtc/Documents/Sentinel/target/surefire/surefirebooter-20260916112341219_3.jar /home/wtc/Documents/Sentinel/target/surefire 2026-09-16T11-23-41_170-jvmRun1 surefire-20260916112341219_1tmp surefire_0-20260916112341219_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/wtc/Documents/Sentinel/target/test-classes:/home/wtc/Documents/Sentinel/target/classes:/home/wtc/.m2/repository/io/javalin/javalin/6.7.0/javalin-6.7.0.jar:/home/wtc/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-server/11.0.25/jetty-server-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-http/11.0.25/jetty-http-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-util/11.0.25/jetty-util-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-io/11.0.25/jetty-io-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/toolchain/jetty-jakarta-servlet-api/5.0.2/jetty-jakarta-servlet-api-5.0.2.jar:/home/wtc/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-server/11.0.25/websocket-jetty-server-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.25/jetty-servlet-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-security/11.0.25/jetty-security-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-webapp/11.0.25/jetty-webapp-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/jetty-xml/11.0.25/jetty-xml-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-api/11.0.25/websocket-jetty-api-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-common/11.0.25/websocket-jetty-common-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/websocket/websocket-core-common/11.0.25/websocket-core-common-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/11.0.25/websocket-servlet-11.0.25.jar:/home/wtc/.m2/repository/org/eclipse/jetty/websocket/websocket-core-server/11.0.25/websocket-core-server-11.0.25.jar:/home/wtc/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.25/kotlin-stdlib-jdk8-1.9.25.jar:/home/wtc/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.25/kotlin-stdlib-1.9.25.jar:/home/wtc/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/home/wtc/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.25/kotlin-stdlib-jdk7-1.9.25.jar:/home/wtc/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/wtc/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/wtc/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/wtc/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/wtc/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/wtc/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/wtc/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/wtc/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/wtc/.m2/repository/org/xerial/sqlite-jdbc/3.50.3.0/sqlite-jdbc-3.50.3.0.jar:/home/wtc/.m2/repository/org/mindrot/jbcrypt/0.4/jbcrypt-0.4.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/wtc/Documents/Sentinel/target/surefire/surefirebooter-20260909122140832_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/wtc/Documents/Sentinel/target/surefire/surefirebooter-20260916112341219_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.10+7-Ubuntu-122.04"/>
     <property name="user.name" value="wtc"/>
@@ -56,16 +56,16 @@
   </properties>
   <testcase name="blockedAdminShouldNotAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
   <testcase name="doctorShouldAccessMedicalArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
-  <testcase name="adminShouldAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.002"/>
-  <testcase name="nurseShouldNotAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.006">
+  <testcase name="adminShouldAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
+  <testcase name="nurseShouldNotAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.007">
     <system-out><![CDATA[Security event saved successfully!
 🚨 UNAUTHORIZED ACCESS ATTEMPT: nurse
 ]]></system-out>
   </testcase>
-  <testcase name="unauthorizedAccessShouldBeRecorded" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.008">
+  <testcase name="unauthorizedAccessShouldBeRecorded" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.007">
     <system-out><![CDATA[Security event saved successfully!
 🚨 UNAUTHORIZED ACCESS ATTEMPT: security_test_nurse
 ]]></system-out>
   </testcase>
-  <testcase name="receptionistShouldAccessReceptionArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.0"/>
+  <testcase name="receptionistShouldAccessReceptionArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
 </testsuite>
