@@ -26,6 +26,13 @@
             <version>6.7.0</version>
         </dependency>
 
+        <dependency>
+        <groupId>io.javalin</groupId>
+        <artifactId>javalin-testtools</artifactId>
+        <version>6.7.0</version>
+        <scope>test</scope>
+    </dependency>
+
         <!-- JUnit: testing framework -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

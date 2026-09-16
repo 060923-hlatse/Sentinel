@@ -38,8 +38,7 @@ public class SentinelApplication {
         new SessionManager();        
 
         // Start server
-        Javalin app = Javalin.create()
-                .start(7000);
+        Javalin app = Javalin.create();
 
         // Health endpoint
         app.get("/health", ctx -> {

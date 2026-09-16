@@ -2,22 +2,29 @@ package co.wethinkcode.sentinel.repository;
 
 import co.wethinkcode.sentinel.model.SecurityEvent;
 
+import java.util.List;
+
 public class SecurityEventRepositoryTest {
 
     public static void main(String[] args) {
 
-        SecurityEvent event = new SecurityEvent(
-                "dr_smith",
-                "LOGIN_FAILED",
-                "192.168.1.20",
-                "HIGH"
-        );
-
         SecurityEventRepository repository =
                 new SecurityEventRepository();
 
-        repository.save(event);
-    }
+        List<SecurityEvent> events =
+                repository.findRecentEvents();
 
-    
+        System.out.println("Recent security events: " + events.size());
+
+        for (SecurityEvent event : events) {
+
+            System.out.println(
+                    event.getUsername()
+                            + " | "
+                            + event.getEventType()
+                            + " | "
+                            + event.getSeverity()
+            );
+        }
+    }
 }
