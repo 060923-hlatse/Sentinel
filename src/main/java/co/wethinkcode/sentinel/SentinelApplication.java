@@ -5,6 +5,7 @@ import co.wethinkcode.sentinel.repository.UserRepository;
 import co.wethinkcode.sentinel.security.AuthenticationService;
 import co.wethinkcode.sentinel.security.AuthorizationService;
 import io.javalin.Javalin;
+import co.wethinkcode.sentinel.security.SessionManager;
 
 public class SentinelApplication {
 
@@ -28,6 +29,9 @@ public class SentinelApplication {
                 new AuthorizationService(
                         securityEventRepository
                 );
+
+        SessionManager sessionManager =
+        new SessionManager();        
 
         // Start server
         Javalin app = Javalin.create()
@@ -57,26 +61,33 @@ public class SentinelApplication {
                             ipAddress
                     );
 
-            if (authenticated) {
+        if (authenticated) {
+
+                var user = userRepository.findByUsername(username);
+
+                String sessionId =
+                        sessionManager.createSession(user);
+
                 ctx.status(200);
-                ctx.json("Login successful");
-            } else {
+                ctx.json(sessionId);
+
+                } else {
+
                 ctx.status(401);
                 ctx.json("Login failed");
-            }
+                }
         });
 
-        
-        app.get("/admin/dashboard", ctx -> {
+       app.get("/admin/dashboard", ctx -> {
 
-            String username =
-                    ctx.queryParam("username");
+        String sessionId =
+                ctx.header("X-Session-Id");
 
-            String ipAddress =
-                    ctx.ip();
+        String ipAddress =
+                ctx.ip();
 
-            var user =
-                    userRepository.findByUsername(username);
+        var user =
+                sessionManager.getUser(sessionId);
 
             boolean allowed =
                     authorizationService.canAccessAdminArea(

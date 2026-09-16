@@ -1,3 +1,4 @@
+co/wethinkcode/sentinel/security/SessionManager.class
 co/wethinkcode/sentinel/CreateAdmin.class
 co/wethinkcode/sentinel/database/DatabaseInitializer.class
 co/wethinkcode/sentinel/security/PasswordHasher.class

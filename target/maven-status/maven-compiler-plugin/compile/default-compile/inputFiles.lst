@@ -6,6 +6,7 @@
 /home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/security/PasswordHasher.java
 /home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/model/SecurityEvent.java
 /home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/security/AuthenticationService.java
+/home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/security/SessionManager.java
 /home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/database/Database.java
 /home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/SentinelApplication.java
 /home/wtc/Documents/Sentinel/src/main/java/co/wethinkcode/sentinel/repository/SecurityEventRepository.java
