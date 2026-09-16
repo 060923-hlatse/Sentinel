@@ -36,3 +36,16 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t sentinel:latest .
+
+      - name: Run Docker container
+        run: docker run -d --name sentinel-test -p 7000:7000 sentinel:latest
+
+      - name: Wait for application
+        run: sleep 10
+
+      - name: Test health endpoint
+        run: curl --fail http://localhost:7000/health
+
+      - name: Stop Docker container
+        if: always()
+        run: docker stop sentinel-test
