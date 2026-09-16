@@ -1,0 +1,15 @@
+# Maven build files
+target/
+
+# IDE files
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Java compiled files
+*.class
+
+# Logs
+*.log
