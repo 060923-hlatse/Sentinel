@@ -23,4 +23,8 @@ public class SessionManager {
     public User getUser(String sessionId) {
         return sessions.get(sessionId);
     }
+
+    public void removeSession(String sessionId) {
+        sessions.remove(sessionId);
+    }
 }
