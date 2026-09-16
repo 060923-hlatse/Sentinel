@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.019" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="co.wethinkcode.sentinel.security.SessionManagerTest" time="0.005" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -54,18 +54,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="blockedAdminShouldNotAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
-  <testcase name="doctorShouldAccessMedicalArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
-  <testcase name="adminShouldAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.0"/>
-  <testcase name="nurseShouldNotAccessAdminArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.005">
-    <system-out><![CDATA[Security event saved successfully!
-🚨 UNAUTHORIZED ACCESS ATTEMPT: nurse
-]]></system-out>
-  </testcase>
-  <testcase name="unauthorizedAccessShouldBeRecorded" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.005">
-    <system-out><![CDATA[Security event saved successfully!
-🚨 UNAUTHORIZED ACCESS ATTEMPT: security_test_nurse
-]]></system-out>
-  </testcase>
-  <testcase name="receptionistShouldAccessReceptionArea" classname="co.wethinkcode.sentinel.security.AuthorizationServiceTest" time="0.001"/>
+  <testcase name="shouldCreateAndRetrieveSession" classname="co.wethinkcode.sentinel.security.SessionManagerTest" time="0.002"/>
+  <testcase name="shouldRemoveSession" classname="co.wethinkcode.sentinel.security.SessionManagerTest" time="0.001"/>
 </testsuite>

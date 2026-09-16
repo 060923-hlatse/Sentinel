@@ -102,7 +102,22 @@ public class SentinelApplication {
             }
 
             ctx.status(200);
-            ctx.json("Welcome to the Sentinel admin dashboard");
-        });
+
+                var events =
+                        securityEventRepository.findRecentEvents();
+
+                ctx.json(events);
+                });
+
+        app.post("/logout", ctx -> {
+
+                String sessionId =
+                        ctx.header("X-Session-Id");
+
+                sessionManager.removeSession(sessionId);
+
+                ctx.status(200);
+                ctx.json("Logged out successfully");
+                });
     }
 }

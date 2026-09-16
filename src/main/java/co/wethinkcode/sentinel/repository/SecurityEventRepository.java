@@ -7,6 +7,8 @@ import co.wethinkcode.sentinel.model.SecurityEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SecurityEventRepository {
 
@@ -113,6 +115,42 @@ public class SecurityEventRepository {
         }
 
         return 0;
+    }
+
+    public List<SecurityEvent> findRecentEvents() {
+
+        List<SecurityEvent> events = new ArrayList<>();
+
+        String sql = """
+                SELECT username, event_type, ip_address, severity
+                FROM security_events
+                ORDER BY timestamp DESC
+                LIMIT 20
+                """;
+
+        try (Connection connection = Database.connect();
+            PreparedStatement statement =
+                    connection.prepareStatement(sql)) {
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+
+                events.add(
+                        new SecurityEvent(
+                                result.getString("username"),
+                                result.getString("event_type"),
+                                result.getString("ip_address"),
+                                result.getString("severity")
+                        )
+                );
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return events;
     }
 
 }
