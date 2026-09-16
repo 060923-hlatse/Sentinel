@@ -1,4 +1,5 @@
 /home/wtc/Documents/Sentinel/src/test/java/co/wethinkcode/sentinel/repository/UserRepositoryTest.java
 /home/wtc/Documents/Sentinel/src/test/java/co/wethinkcode/sentinel/security/AuthenticationServiceTest.java
 /home/wtc/Documents/Sentinel/src/test/java/co/wethinkcode/sentinel/security/SessionManagerTest.java
+/home/wtc/Documents/Sentinel/src/test/java/co/wethinkcode/sentinel/SentinelApplicationTest.java
 /home/wtc/Documents/Sentinel/src/test/java/co/wethinkcode/sentinel/security/AuthorizationServiceTest.java

@@ -10,6 +10,10 @@ import co.wethinkcode.sentinel.security.SessionManager;
 public class SentinelApplication {
 
     public static void main(String[] args) {
+        createApp().start(7000);
+    }
+
+    public static Javalin createApp() {
 
         // Repositories
         UserRepository userRepository =
@@ -119,5 +123,6 @@ public class SentinelApplication {
                 ctx.status(200);
                 ctx.json("Logged out successfully");
                 });
-    }
+                return app;
+        }
 }
