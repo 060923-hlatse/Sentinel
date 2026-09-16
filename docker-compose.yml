@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  sentinel:
+    build: .
+    container_name: sentinel-app
+    ports:
+      - "7000:7000"
+    volumes:
+      - ./sentinel.db:/app/sentinel.db
