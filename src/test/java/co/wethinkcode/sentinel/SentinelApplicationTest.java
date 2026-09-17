@@ -6,6 +6,8 @@ import io.javalin.Javalin;
 import io.javalin.testtools.JavalinTest;
 import okhttp3.FormBody;
 import okhttp3.Request;
+import co.wethinkcode.sentinel.model.User;
+import co.wethinkcode.sentinel.repository.UserRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -91,6 +93,18 @@ class SentinelApplicationTest {
 
     @Test
     void doctorShouldNotAccessAlerts() {
+
+        UserRepository userRepository = new UserRepository();
+
+        userRepository.deleteByUsername("dr_smith");
+
+        userRepository.save(
+                new User(
+                        "dr_smith",
+                        "doctor123",
+                        "DOCTOR"
+                )
+        );
 
         Javalin app = SentinelApplication.createApp();
 
