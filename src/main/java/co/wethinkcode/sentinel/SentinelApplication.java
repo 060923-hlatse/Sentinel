@@ -111,6 +111,35 @@ public class SentinelApplication {
 
                 ctx.json(events);
                 });
+         app.get("/admin/alerts", ctx -> {
+
+            String sessionId =
+                    ctx.header("X-Session-Id");
+
+            String ipAddress =
+                    ctx.ip();
+
+            var user =
+                    sessionManager.getUser(sessionId);
+
+            boolean allowed =
+                    authorizationService.canAccessAdminArea(
+                            user,
+                            ipAddress
+                    );
+
+            if (!allowed) {
+                ctx.status(403);
+                ctx.json("Access denied");
+                return;
+            }
+
+            var alerts =
+                    securityEventRepository.findHighSeverityEvents();
+
+            ctx.status(200);
+            ctx.json(alerts);
+        });        
 
         app.post("/logout", ctx -> {
 
