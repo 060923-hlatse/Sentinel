@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sentinel Security Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            margin-bottom: 30px;
+        }
+
+        .login {
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .login input {
+            display: block;
+            width: 250px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-button {
+            margin-left: 10px;
+            background: #ef4444;
+            color: white;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .card p {
+            color: #9ca3af;
+        }
+
+        .events {
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .event {
+            border-bottom: 1px solid #374151;
+            padding: 15px 0;
+        }
+
+        .event:last-child {
+            border-bottom: none;
+        }
+
+        .high {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .low {
+            color: #f59e0b;
+        }
+
+        .alert {
+            border-left: 4px solid #ef4444;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .alert-title {
+            font-weight: bold;
+            color: #ef4444;
+        }
+
+        #login-message {
+            margin-top: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>🛡 Sentinel Security</h1>
+
+    <div class="subtitle">
+        Hospital Information System Security Monitor
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div class="login">
+
+        <h2>Admin Login</h2>
+
+        <input
+            id="username"
+            type="text"
+            placeholder="Username"
+        >
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Password"
+        >
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+        <p id="login-message"></p>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2 id="high-alerts">
+                0
+            </h2>
+
+            <p>
+                High Alerts
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2 id="failed-logins">
+                0
+            </h2>
+
+            <p>
+                Failed Logins
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2 id="brute-force">
+                0
+            </h2>
+
+            <p>
+                Brute Force Attacks
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                ONLINE
+            </h2>
+
+            <p>
+                System Status
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RECENT SECURITY EVENTS -->
+
+    <div class="events">
+
+        <h2>
+            Recent Security Events
+        </h2>
+
+        <div id="events-list">
+
+            Please log in to view security events.
+
+        </div>
+
+    </div>
+
+
+    <!-- HIGH SEVERITY ALERTS -->
+
+    <div class="events">
+
+        <h2>
+            🚨 High Severity Alerts
+        </h2>
+
+        <div id="alerts-list">
+
+            Please log in to view alerts.
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =========================
+        // SESSION
+        // =========================
+
+        let currentSessionId = null;
+
+
+        // =========================
+        // LOGIN
+        // =========================
+
+        async function login() {
+
+            const username =
+                document.getElementById("username").value;
+
+            const password =
+                document.getElementById("password").value;
+
+
+            const formData =
+                new URLSearchParams();
+
+            formData.append(
+                "username",
+                username
+            );
+
+            formData.append(
+                "password",
+                password
+            );
+
+
+            try {
+
+                const response =
+                    await fetch("/login", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/x-www-form-urlencoded"
+                        },
+
+                        body: formData.toString()
+
+                    });
+
+
+                const responseText =
+                    await response.text();
+
+
+                console.log(
+                    "Status:",
+                    response.status
+                );
+
+                console.log(
+                    "Response:",
+                    responseText
+                );
+
+
+                if (!response.ok) {
+
+                    document
+                        .getElementById("login-message")
+                        .textContent =
+                        "Login failed.";
+
+                    return;
+                }
+
+
+                currentSessionId =
+                    responseText;
+
+
+                document
+                    .getElementById("login-message")
+                    .textContent =
+                    "Login successful!";
+
+
+                loadEvents(currentSessionId);
+
+                loadAlerts(currentSessionId);
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                document
+                    .getElementById("login-message")
+                    .textContent =
+                    "Something went wrong.";
+
+            }
+
+        }
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        async function logout() {
+
+            if (!currentSessionId) {
+
+                document
+                    .getElementById("login-message")
+                    .textContent =
+                    "No active session.";
+
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/logout",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "X-Session-Id":
+                                    currentSessionId
+                            }
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Logout failed"
+                    );
+
+                }
+
+
+                currentSessionId = null;
+
+
+                document
+                    .getElementById("login-message")
+                    .textContent =
+                    "Logged out successfully.";
+
+
+                document
+                    .getElementById("events-list")
+                    .textContent =
+                    "Please log in to view security events.";
+
+
+                document
+                    .getElementById("alerts-list")
+                    .textContent =
+                    "Please log in to view alerts.";
+
+
+                document
+                    .getElementById("high-alerts")
+                    .textContent =
+                    "0";
+
+
+                document
+                    .getElementById("failed-logins")
+                    .textContent =
+                    "0";
+
+
+                document
+                    .getElementById("brute-force")
+                    .textContent =
+                    "0";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+
+                document
+                    .getElementById("login-message")
+                    .textContent =
+                    "Logout failed.";
+
+            }
+
+        }
+
+
+        // =========================
+        // RECENT EVENTS
+        // =========================
+
+        async function loadEvents(sessionId) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/admin/dashboard",
+                        {
+                            headers: {
+                                "X-Session-Id":
+                                    sessionId
+                            }
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load events"
+                    );
+
+                }
+
+
+                const events =
+                    await response.json();
+
+
+                const eventsList =
+                    document.getElementById(
+                        "events-list"
+                    );
+
+
+                eventsList.innerHTML = "";
+
+
+                let highAlerts = 0;
+
+                let failedLogins = 0;
+
+                let bruteForce = 0;
+
+
+                events.forEach(event => {
+
+
+                    if (
+                        event.severity === "HIGH"
+                    ) {
+
+                        highAlerts++;
+
+                    }
+
+
+                    if (
+                        event.eventType ===
+                        "LOGIN_FAILED"
+                    ) {
+
+                        failedLogins++;
+
+                    }
+
+
+                    if (
+                        event.eventType ===
+                        "BRUTE_FORCE_DETECTED"
+                    ) {
+
+                        bruteForce++;
+
+                    }
+
+
+                    const eventElement =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    eventElement.className =
+                        "event";
+
+
+                    const severityClass =
+                        event.severity === "HIGH"
+                            ? "high"
+                            : "low";
+
+
+                    eventElement.innerHTML = `
+
+                        <strong>
+                            ${event.eventType}
+                        </strong>
+
+                        <br>
+
+                        User:
+                        ${event.username}
+
+                        <br>
+
+                        Severity:
+
+                        <span class="${severityClass}">
+
+                            ${event.severity}
+
+                        </span>
+
+                    `;
+
+
+                    eventsList.appendChild(
+                        eventElement
+                    );
+
+                });
+
+
+                document
+                    .getElementById("high-alerts")
+                    .textContent =
+                    highAlerts;
+
+
+                document
+                    .getElementById("failed-logins")
+                    .textContent =
+                    failedLogins;
+
+
+                document
+                    .getElementById("brute-force")
+                    .textContent =
+                    bruteForce;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+
+                document
+                    .getElementById("events-list")
+                    .textContent =
+                    "Unable to load security events.";
+
+            }
+
+        }
+
+
+        // =========================
+        // HIGH SEVERITY ALERTS
+        // =========================
+
+        async function loadAlerts(sessionId) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/admin/alerts",
+                        {
+                            headers: {
+                                "X-Session-Id":
+                                    sessionId
+                            }
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load alerts"
+                    );
+
+                }
+
+
+                const alerts =
+                    await response.json();
+
+
+                const alertsList =
+                    document.getElementById(
+                        "alerts-list"
+                    );
+
+
+                alertsList.innerHTML = "";
+
+
+                if (alerts.length === 0) {
+
+                    alertsList.textContent =
+                        "No high severity alerts.";
+
+                    return;
+
+                }
+
+
+                alerts.forEach(alert => {
+
+                    const alertElement =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    alertElement.className =
+                        "alert";
+
+
+                    alertElement.innerHTML = `
+
+                        <div class="alert-title">
+
+                            🚨 ${alert.eventType}
+
+                        </div>
+
+                        <br>
+
+                        User:
+                        ${alert.username}
+
+                        <br>
+
+                        IP Address:
+                        ${alert.ipAddress}
+
+                        <br>
+
+                        Severity:
+
+                        <span class="high">
+
+                            ${alert.severity}
+
+                        </span>
+
+                    `;
+
+
+                    alertsList.appendChild(
+                        alertElement
+                    );
+
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Alerts error:",
+                    error
+                );
+
+
+                document
+                    .getElementById("alerts-list")
+                    .textContent =
+                    "Unable to load security alerts.";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

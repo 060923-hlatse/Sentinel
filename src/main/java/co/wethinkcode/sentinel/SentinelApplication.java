@@ -38,7 +38,13 @@ public class SentinelApplication {
         new SessionManager();        
 
         // Start server
-        Javalin app = Javalin.create();
+        Javalin app = Javalin.create(config -> {
+            config.staticFiles.add("/public");
+        });
+
+        app.get("/", ctx -> {
+            ctx.redirect("/index.html");
+        });
 
         // Health endpoint
         app.get("/health", ctx -> {
