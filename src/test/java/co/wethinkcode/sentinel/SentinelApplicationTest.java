@@ -89,4 +89,42 @@ class SentinelApplicationTest {
         app.stop();
     }
 
+    @Test
+    void doctorShouldNotAccessAlerts() {
+
+        Javalin app = SentinelApplication.createApp();
+
+        JavalinTest.test(app, (server, client) -> {
+
+            var loginResponse =
+                    client.request(
+                            "/login",
+                            new Request.Builder()
+                                    .post(
+                                            new FormBody.Builder()
+                                                    .add("username", "dr_smith")
+                                                    .add("password", "doctor123")
+                                                    .build()
+                                    )
+                    );
+
+            assertEquals(200, loginResponse.code());
+
+            String sessionId = loginResponse.body().string();
+
+            var response =
+                    client.get(
+                            "/admin/alerts",
+                            request -> request.header(
+                                    "X-Session-Id",
+                                    sessionId
+                            )
+                    );
+
+            assertEquals(403, response.code());
+        });
+
+        app.stop();
+    }
+
 }
